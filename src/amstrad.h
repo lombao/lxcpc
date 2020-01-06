@@ -19,7 +19,7 @@
 #ifndef _AMSTRAD_H
 #define _AMSTRAD_H
 
-#include <lx80.h>
+#include <lxz80.h>
 #include <stdint.h>
 #include <SDL2/SDL.h>
 

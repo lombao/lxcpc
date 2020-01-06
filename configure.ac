@@ -15,15 +15,27 @@ AC_PROG_YACC
 AC_PROG_LEX
 AM_PROG_AR
 
-# Checks for libraries.
+# Checks for header files.
+AC_CHECK_HEADERS([stdint.h stdlib.h string.h time.h])
+
+# Checks for SDL2
 SDL_VERSION=2.0
 AM_PATH_SDL2($SDL_VERSION,:,AC_MSG_ERROR([*** No SDL $SDL_VERSION found please install it ***]))
 AC_SUBST([SDL_CFLAGS])
-#CFLAGS="$CFLAGS $SDL_CFLAGS"
-#LIBS="$LIBS $SDL_LIBS"
+CFLAGS="$CFLAGS $SDL_CFLAGS"
+LIBS="$LIBS $SDL_LIBS"
 
-# Checks for header files.
-AC_CHECK_HEADERS([stdint.h stdlib.h string.h time.h])
+# Check for lxz80
+AC_ARG_WITH(lxz80-prefix,[  --with-lxz80-prefix=PFX   Prefix where LXZ80 is installed (optional],
+            lxz80_prefix="$withval", lxz80_prefix="")
+if test "x$lxz80_prefix" = x ; then
+    PKG_CHECK_MODULES([LXZ80], [lxz80 >= 0.0.7])
+else
+    LXZ80_LIBS="-L${lxz80_prefix}/lib -llxz80"
+    LXZ80_CFLAGS="-I${lxz80_include}/include"
+fi
+
+
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_INT16_T
@@ -38,3 +50,13 @@ AM_INIT_AUTOMAKE([1.11 -Wall -Werror foreign])
 AC_CONFIG_FILES([src/Makefile Makefile])
 LT_INIT([shared disable-static])
 AC_OUTPUT
+
+echo "
+	LXCPC ${VERSION} has been configured for compilation
+	Will be compiled into PREFIX: ${prefix}
+	Using the following:
+	LXZ80_LIBS: ${LXZ80_LIBS}
+	LXZ80_CFLAGS: ${LXZ80_CFLAGS}
+	SDL2_LIBS: ${SDL_LIBS}
+	SDL2_CFLAGS: ${SDL_CFLAGS}
+"

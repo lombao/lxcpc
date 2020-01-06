@@ -17,7 +17,7 @@
  */
  
 #include <stdint.h>
-#include <lx80.h>
+#include <lxz80.h>
 
 #define ENABLED 	1
 #define DISABLED	0
