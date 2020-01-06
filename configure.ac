@@ -1,0 +1,40 @@
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ([2.69])
+AC_INIT([lxcpc], [0.0.1], [cesar.lombao@gmail.com])
+AC_CONFIG_SRCDIR([src/main.c])
+AC_CONFIG_AUX_DIR([build-aux])
+AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_MACRO_DIRS([m4])
+
+# Checks for programs.
+AC_PROG_CC
+AC_PROG_MAKE_SET
+AC_PROG_YACC
+AC_PROG_LEX
+AM_PROG_AR
+
+# Checks for libraries.
+SDL_VERSION=2.0
+AM_PATH_SDL2($SDL_VERSION,:,AC_MSG_ERROR([*** No SDL $SDL_VERSION found please install it ***]))
+AC_SUBST([SDL_CFLAGS])
+#CFLAGS="$CFLAGS $SDL_CFLAGS"
+#LIBS="$LIBS $SDL_LIBS"
+
+# Checks for header files.
+AC_CHECK_HEADERS([stdint.h stdlib.h string.h time.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_TYPE_INT16_T
+AC_TYPE_INT32_T
+AC_TYPE_INT8_T
+AC_TYPE_UINT16_T
+AC_TYPE_UINT8_T
+
+# Checks for library functions.
+
+AM_INIT_AUTOMAKE([1.11 -Wall -Werror foreign])
+AC_CONFIG_FILES([src/Makefile Makefile])
+LT_INIT([shared disable-static])
+AC_OUTPUT

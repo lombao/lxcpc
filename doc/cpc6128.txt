@@ -1,0 +1,17 @@
+Documentation and references
+
+I've used these 3 sites. 
+
+ * http://www.cpcmania.com
+ * http://www.cpcwiki.eu
+ * http://www.cpctech.org.uk
+ * https://cpcrulez.fr
+
+Plus a book called 
+ * Claves para el Amstrad  ( Daniel Martin ) ( Spanish )
+
+Also I've found this very useful PDF
+ * http://cpctech.cpc-live.com/docs/manual/s968ap12.pdf
+
+About the BF nd BE io ports on the CRTC
+ * https://cpcrulez.fr/coding_wacci_CRTC_part1.htm
